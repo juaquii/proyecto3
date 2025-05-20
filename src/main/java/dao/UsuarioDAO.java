@@ -3,38 +3,76 @@ package dao;
 import model.Usuario;
 import utils.DatabaseConnection;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UsuarioDAO {
-    private Connection connection;
-
-    public UsuarioDAO() {
-    }
-
-    public void agregarUsuario(String nombre, String email) {
-        String query = "INSERT INTO Usuarios (nombre, email) VALUES (?, ?)";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, nombre);
-            pstmt.setString(2, email);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<Usuario> obtenerUsuarios() {
-        List<Usuario> usuarios = new ArrayList<>();
-        String query = "SELECT * FROM Usuarios";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                usuarios.add(new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("email")));
+    public Usuario findByEmail(String email) {
+        String query = "SELECT * FROM usuarios WHERE email = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return usuarios;
+        return null;
+    }
+
+    public boolean save(Usuario usuario) {
+        String query = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getEmail());
+            statement.setString(3, usuario.getPassword());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public Usuario buscarUsuario(String email, String passwordHash) {
+        String query = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            statement.setString(2, passwordHash);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean guardarUsuario(Usuario usuario) {
+        String query = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, usuario.getNombre());
+            statement.setString(2, usuario.getEmail());
+            statement.setString(3, usuario.getPassword());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

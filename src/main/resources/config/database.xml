@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <url>jdbc:mysql://localhost:3306/proyecto3</url>
+    <host>localhost</host>
+    <port>3306</port>
     <username>juaquii</username>
     <password>root</password>
+    <database>mydatabase</database>
 </database>

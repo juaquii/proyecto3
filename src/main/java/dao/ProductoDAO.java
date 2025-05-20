@@ -1,40 +1,32 @@
 package dao;
 
+import model.Producto;
 import utils.DatabaseConnection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDAO {
-    private Connection connection;
-
-    public ProductoDAO() {
-        this.connection = DatabaseConnection.getConnection();
-    }
-
-    public List<String> obtenerProductos() {
-        List<String> productos = new ArrayList<>();
-        String query = "SELECT nombre FROM Productos";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                productos.add(rs.getString("nombre"));
+    public List<Producto> findAll() {
+        List<Producto> productos = new ArrayList<>();
+        String query = "SELECT * FROM productos";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                productos.add(new Producto(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nombre"),
+                        resultSet.getDouble("precio")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return productos;
-    }
-
-    public void agregarProducto(String nombre, double precio) {
-        String query = "INSERT INTO Productos (nombre, precio) VALUES (?, ?)";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, nombre);
-            pstmt.setDouble(2, precio);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

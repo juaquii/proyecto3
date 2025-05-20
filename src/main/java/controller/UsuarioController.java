@@ -14,22 +14,41 @@ public class UsuarioController {
     @FXML
     private TextField emailField;
     @FXML
+    private TextField passwordField;
+    @FXML
     private ListView<Usuario> usuarioListView;
 
     private UsuarioDAO usuarioDAO;
     private ObservableList<Usuario> usuarios;
 
-    public void initialize() {
+    public UsuarioController() {
         usuarioDAO = new UsuarioDAO();
-        usuarios = FXCollections.observableArrayList(usuarioDAO.obtenerUsuarios());
+        usuarios = FXCollections.observableArrayList();
         usuarioListView.setItems(usuarios);
     }
 
-    @FXML
-    private void agregarUsuario() {
+    public Usuario registrarUsuario() {
         String nombre = nombreField.getText();
-        String email = emailField.getText();
-        usuarioDAO.agregarUsuario(nombre, email);
-        usuarios.setAll(usuarioDAO.obtenerUsuarios());
+        String usuario = emailField.getText();
+        String contrasena = passwordField.getText();
+        String contrasenaHash = Usuario.hashPassword(contrasena);
+        String correoElectronico = emailField.getText();
+
+        // Verificar si el usuario ya existe
+        if (usuarioDAO.buscarUsuario(usuario, contrasenaHash) != null) {
+            // Usuario ya existe, no crear un nuevo usuario
+            return null;
+        }
+
+        // Crear un nuevo usuario
+        Usuario nuevoUsuario = new Usuario(usuario, contrasenaHash, nombre, correoElectronico, false);
+
+        // Guardar el usuario en la base de datos
+        usuarioDAO.guardarUsuario(nuevoUsuario);
+
+        // Actualizar la lista de usuarios
+        usuarios.add(nuevoUsuario);
+
+        return nuevoUsuario;
     }
 }
