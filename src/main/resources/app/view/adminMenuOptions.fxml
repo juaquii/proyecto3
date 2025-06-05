@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="872.0" prefWidth="1256.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.AdminMenuOptions">
+   <children>
+      <Text layoutX="511.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OPCIONES DE ADMINISTRADOR" wrappingWidth="192.0" />
+      <Text layoutX="405.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Aqui puedes escoger diversas opciones para hacer alguna actividad" wrappingWidth="377.13671875" />
+      <ImageView fx:id="closeSession" fitHeight="52.0" fitWidth="109.0" layoutX="1162.0" layoutY="27.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../IconsImages/exit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="findClients" layoutX="331.0" layoutY="111.0" mnemonicParsing="false" onAction="#findAllClients" text="BUSCAR CLIENTES" />
+      <Button fx:id="deleteClients" layoutX="526.0" layoutY="111.0" mnemonicParsing="false" onAction="#goToDeleteClients" text="BORRAR CLIENTES" />
+      <Button fx:id="createRooms" layoutX="698.0" layoutY="162.0" mnemonicParsing="false" onAction="#goToCreateRooms" text="CREAR HABITACIONES" />
+      <Button fx:id="deleteRooms" layoutX="521.0" layoutY="162.0" mnemonicParsing="false" onAction="#goToDeleteRooms" text="BORRAR HABITACIONES" />
+      <Button fx:id="findAllRooms" layoutX="331.0" layoutY="162.0" mnemonicParsing="false" onAction="#findAllRooms" text="BUSCAR HABITACIONES" />
+      <TableView fx:id="tableViewClient" layoutX="34.0" layoutY="212.0" prefHeight="552.0" prefWidth="622.0">
+        <columns>
+          <TableColumn fx:id="columnDNI" editable="false" prefWidth="114.0" text="DNI" />
+          <TableColumn fx:id="columnName" editable="false" minWidth="0.0" prefWidth="101.0" text="NOMBRE" />
+            <TableColumn fx:id="columnSurnames" editable="false" prefWidth="122.0" text="APELLIDOS" />
+            <TableColumn fx:id="columnPhone" editable="false" prefWidth="105.0" text="TELEFONO" />
+            <TableColumn fx:id="columnMail" editable="false" prefWidth="86.0" text="MAIL" />
+            <TableColumn fx:id="columnAdmin" editable="false" prefWidth="99.0" text="ADMIN" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableViewRoom" editable="true" layoutX="703.0" layoutY="212.0" prefHeight="552.0" prefWidth="511.0">
+        <columns>
+          <TableColumn fx:id="columnCodRoom" editable="false" prefWidth="120.0" text="CODHABITACION" />
+          <TableColumn fx:id="columnBeds" prefWidth="68.0" text="CAMAS" />
+            <TableColumn fx:id="columnWindows" prefWidth="107.0" text="VENTANAS" />
+            <TableColumn fx:id="columnTypeR" prefWidth="82.0" text="TIPO HAB" />
+            <TableColumn fx:id="columnPrice" prefWidth="133.0" text="PRECIO" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="TypeRComboBox" layoutX="86.0" layoutY="68.0" onAction="#updateTypeR" opacity="0.36" prefWidth="150.0" promptText="TIPO" />
+      <Button fx:id="updateData" layoutX="698.0" layoutY="111.0" mnemonicParsing="false" onAction="#goToUpdateDataFromAdmin" text="ACTUALIZAR DATOS" />
+   </children>
+</AnchorPane>

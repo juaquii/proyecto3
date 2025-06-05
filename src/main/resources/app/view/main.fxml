@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2477ae;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainController">
+   <children>
+      <Button fx:id="loginButton" layoutX="368.0" layoutY="214.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: white;" text="INICIAR SESION" textFill="#0a0a0a" />
+      <Button fx:id="registrerButton" layoutX="132.0" layoutY="214.0" mnemonicParsing="false" onAction="#goToRegistrer" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: white;" text="REGISTRARSE" />
+      <ImageView fx:id="exitButton" fitHeight="52.0" fitWidth="109.0" layoutX="534.0" layoutY="337.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../IconsImages/exit.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="80.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIENVENIDOS A HOTELES PANCHO" wrappingWidth="496.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="219.0" fitWidth="256.0" layoutX="191.0" layoutY="71.0">
+         <image>
+            <Image url="@../../../../IconsImages/logo.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

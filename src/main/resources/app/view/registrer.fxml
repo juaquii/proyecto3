@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.RegistrerController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <AnchorPane fx:id="anchorPane" prefHeight="491.0" prefWidth="282.0">
+         <children>
+            <Text layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGRESA AQUI TUS DATOS PARA REGISTRARTE" textAlignment="CENTER" wrappingWidth="239.36328125" />
+            <TextField fx:id="fieldDni" layoutX="29.0" layoutY="51.0" prefHeight="25.0" prefWidth="191.0" promptText="DNI" />
+            <TextField fx:id="fieldName" layoutX="29.0" layoutY="103.0" prefHeight="25.0" prefWidth="191.0" promptText="NOMBRE" />
+            <TextField fx:id="fieldSurnames" layoutX="29.0" layoutY="154.0" prefHeight="25.0" prefWidth="191.0" promptText="APELLIDOS" />
+            <TextField fx:id="fieldPhone" layoutX="29.0" layoutY="205.0" prefHeight="25.0" prefWidth="191.0" promptText="TELEFONO" />
+            <TextField fx:id="fieldMail" layoutX="29.0" layoutY="252.0" prefHeight="25.0" prefWidth="191.0" promptText="CORREO" />
+            <TextField fx:id="fieldPassword" layoutX="29.0" layoutY="302.0" prefHeight="25.0" prefWidth="191.0" promptText="CONTRASEÑA" />
+            <TextField fx:id="fieldAdmin" layoutX="29.0" layoutY="355.0" prefHeight="25.0" prefWidth="191.0" promptText="ADMIN" />
+            <Button fx:id="registrerButton" layoutX="149.0" layoutY="414.0" mnemonicParsing="false" onAction="#registerClient" text="REGISTRARSE" />
+            <ImageView fx:id="returnButton" fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="402.0" onMouseClicked="#goToMainController" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../IconsImages/return.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

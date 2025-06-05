@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
-    <host>localhost</host>
-    <port>3306</port>
-    <username>juaquii</username>
-    <password>root</password>
-    <database>mydatabase</database>
-</database>
