@@ -5,7 +5,7 @@ import app.utils.XMLManager;
 
 public class SaveConnection {
     public static void main(String[] args) {
-        ConnectionProperties c = new ConnectionProperties("localhost","3306","hotel","root","root");
+        ConnectionProperties c = new ConnectionProperties("localhost","3306","hotelpancho","juaqu","root");
         XMLManager.writeXML(c,"connection.xml");
     }
 }
